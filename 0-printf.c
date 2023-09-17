@@ -85,5 +85,5 @@ int _printf(const char *format, ...)
 		}
 	}
 	va_end(check_list);
-	return (printed_characters-1);
+	return (printed_characters);
 }
