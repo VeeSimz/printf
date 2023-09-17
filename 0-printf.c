@@ -45,7 +45,7 @@ int _printf(const char *format, ...)
 		}
 		}
 	va_end(check_list);
-	_putchar('\n');
+	/*_putchar('\n');8*/
 	return (0);
 
 }
