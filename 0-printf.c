@@ -1,5 +1,45 @@
 #include "main.h"
+#include <stdlib.h>
 
+/**
+* print_char - prints the character
+* @args: list
+*
+* Return: integer
+*/
+
+int print_char(va_list args)
+{
+	char c = va_arg(args, int);
+
+	_putchar(c);
+	return (-1);
+}
+
+/**
+* check_string - checks the contents of your str
+* @args: list
+*
+* Return: length
+*/
+int check_string(va_list args)
+{
+	char *str = va_arg(args, char *);
+	int count = 0;
+
+	if (str == NULL)
+	{
+		return (-1);
+	}
+	while (*str != '\0')
+	{
+		_putchar(*str);
+		str++;
+		count++;
+	}
+
+	return (count);
+}
 /**
 * _printf - print clone
 * @format: constant string literal
@@ -9,65 +49,41 @@
 int _printf(const char *format, ...)
 {
 	va_list check_list;
-	int i, j = 0;
-	int index = 0, error = 0;
-	char c, *str;
-	char errormsg[] = "Invalid format or argument";
+	int i, result = 0, printed_characters = 0;
 
 	va_start(check_list, format);
 	for (i = 0; format[i] != '\0'; i++)
 	{
 		if (format[i] == '%')
 		{
-
 			i++;
-			switch (format[i])
+			if (format[i] == '%')
+				_putchar('%');
+			else
 			{
-			case 'c':
-				c = (char) va_arg(check_list, int);
-				_putchar(c);
-				break;
-			case 's':
+				switch (format[i])
 				{
-					str = va_arg(check_list, char *);
-
-					if (str == NULL)
-					{
-						error = 1;
-					}
-					else
-					{
-						while (str[j] != '\0')
-						{
-							_putchar(*str);
-							str++;
-						}
-					}
-					break;
+					case 'c':
+						print_char(check_list);
+						break;
+					case 's':
+						result = check_string(check_list);
+						if (result == -1)
+							va_end(check_list);
+						printed_characters += result;
+						break;
+				default:
+					va_end(check_list);
+					return (-1);
 				}
-			default:
-				error = 1;
-				break;
-			}		
+			}
 		}
-
 		else
 		{
-			char c = format[i];
-
-			_putchar(c);
-		}
-		}
-	va_end(check_list);
-	if (error == 1)
-	{
-		while (errormsg[index] != '\0')
-		{
-			_putchar(errormsg[index]);
-			index++;
+			_putchar(format[i]);
+			printed_characters++;
 		}
 	}
-	/*_putchar('\n');8*/
-	return (0);
-
+	va_end(check_list);
+	return (printed_characters);
 }
