@@ -2,41 +2,11 @@
 #include <stdlib.h>
 
 /**
- * check_format - checks the specifier character
- * @args: list
- * @specifier: character
- *
- * Return: 0
- */
-int check_format(va_list args, char specifier)
-{
-	int printed_characters = 0, result = 0;
-
-	switch (specifier)
-	{
-		case 'c':
-			print_char(args);
-			break;
-		case 's':
-			result = check_string(args);
-			if (result == -1)
-				va_end(args);
-			printed_characters += result;
-			break;
-		default:
-			va_end(args);
-			return (-1);
-	}
-	return (0);
-}
-
-/**
 * print_char - prints the character
 * @args: list
 *
 * Return: integer
 */
-
 int print_char(va_list args)
 {
 	char c = va_arg(args, int);
@@ -44,7 +14,6 @@ int print_char(va_list args)
 	_putchar(c);
 	return (-1);
 }
-
 /**
 * check_string - checks the contents of your str
 * @args: list
@@ -66,7 +35,6 @@ int check_string(va_list args)
 		str++;
 		count++;
 	}
-
 	return (count);
 }
 /**
@@ -86,25 +54,29 @@ int _printf(const char *format, ...)
 		if (format[i] == '%')
 		{
 			i++;
-			if (format[i] == '\0')
-			{
-				va_end(check_list);
-				return (-1);
-			}
-			else if (format[i] == '%')
+			if (format[i] == '%')
 			{
 				_putchar('%');
 			}
 			else
 			{
-				result = check_format(check_list, format[i]);
-				if (result == -1)
+				switch (format[i])
 				{
+				case 'c':
+					print_char(check_list);
+					break;
+				case 's':
+					result = check_string(check_list);
+					if (result == -1)
+					{
+						va_end(check_list);
+						printed_characters += result;
+					}
+					break;
+				default:
 					va_end(check_list);
 					return (-1);
 				}
-				printed_characters += result;
-
 			}
 		}
 		else
