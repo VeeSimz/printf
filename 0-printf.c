@@ -48,6 +48,9 @@ int _printf(const char *format, ...)
 	va_list check_list;
 	int i, result = 0, printed_characters = 0;
 
+	if (*format == '\0')
+		return (-1);
+
 	va_start(check_list, format);
 	for (i = 0; format[i] != '\0'; i++)
 	{
