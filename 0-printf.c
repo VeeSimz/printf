@@ -12,7 +12,7 @@ int print_char(va_list args)
 	char c = va_arg(args, int);
 
 	_putchar(c);
-	return (-1);
+	return (1);
 }
 /**
 * check_string - checks the contents of your str
@@ -59,22 +59,24 @@ int _printf(const char *format, ...)
 			i++;
 			if (format[i] == '%')
 			{
-				_putchar('%');
+				result = _putchar('%');
+				printed_characters += result;
 			}
 			else
 			{
 				switch (format[i])
 				{
 				case 'c':
-					print_char(check_list);
+					result = print_char(check_list);
+					printed_characters += result;
 					break;
 				case 's':
 					result = check_string(check_list);
 					if (result == -1)
 					{
 						va_end(check_list);
-						printed_characters += result;
 					}
+					printed_characters += result;
 					break;
 				default:
 					va_end(check_list);
@@ -89,5 +91,5 @@ int _printf(const char *format, ...)
 		}
 	}
 	va_end(check_list);
-	return (printed_characters);
+	return (printed_characters - 1);
 }
