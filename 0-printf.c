@@ -46,7 +46,7 @@ int check_string(va_list args)
 int _printf(const char *format, ...)
 {
 	va_list check_list;
-	int i, result = 0, printed_characters = 0;
+	int i, result = 0;
 
 
 	va_start(check_list, format);
@@ -62,25 +62,22 @@ int _printf(const char *format, ...)
 			i++;
 			if (format[i] == '%')
 			{
-				result = _putchar('%');
-				printed_characters += result;
+				result += _putchar('%');
 			}
 			else
 			{
 				switch (format[i])
 				{
 				case 'c':
-					result = print_char(check_list);
-					printed_characters += result;
+					result += print_char(check_list);
 					break;
 				case 's':
-					result = check_string(check_list);
+					result += check_string(check_list);
 					if (result == -1)
 					{
 						va_end(check_list);
 					}
-					printed_characters += result;
-					break;
+				break;
 				default:
 					va_end(check_list);
 					return (-1);
@@ -89,10 +86,9 @@ int _printf(const char *format, ...)
 		}
 		else
 		{
-			_putchar(format[i]);
-			printed_characters++;
+			result += _putchar(format[i]);
 		}
 	}
 	va_end(check_list);
-	return (printed_characters);
+	return (result);
 }
