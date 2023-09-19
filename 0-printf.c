@@ -46,6 +46,10 @@ int _printf(const char *format, ...)
 					number = va_arg(check_list, int);
 					result += print_num(number);
 					break;
+				case 'i':
+					number = va_arg(check_list, int);
+					result += print_num(number);
+					break;
 
 				default:
 					va_end(check_list);
