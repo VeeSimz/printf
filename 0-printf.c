@@ -1,42 +1,5 @@
 #include "main.h"
-#include <stdlib.h>
 
-/**
-* print_char - prints the character
-* @args: list
-*
-* Return: integer
-*/
-int print_char(va_list args)
-{
-	char c = va_arg(args, int);
-
-	_putchar(c);
-	return (1);
-}
-/**
-* check_string - checks the contents of your str
-* @args: list
-*
-* Return: length
-*/
-int check_string(va_list args)
-{
-	char *str = va_arg(args, char *);
-	int count = 0;
-
-	if (str == NULL)
-	{
-		return (-1);
-	}
-	while (*str != '\0')
-	{
-		_putchar(*str);
-		str++;
-		count++;
-	}
-	return (count);
-}
 /**
 * _printf - print clone
 * @format: constant string literal
@@ -47,6 +10,7 @@ int _printf(const char *format, ...)
 {
 	va_list check_list;
 	int i, result = 0;
+	/*int digit;*/
 
 
 	va_start(check_list, format);
@@ -78,9 +42,12 @@ int _printf(const char *format, ...)
 						va_end(check_list);
 					}
 					break;
+<<<<<<< HEAD
 				default:
 					va_end(check_list);
 					return (-1);
+=======
+>>>>>>> 54fe754 (Refactored code for Betty)
 				}
 			}
 		}
