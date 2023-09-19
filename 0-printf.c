@@ -77,7 +77,7 @@ int _printf(const char *format, ...)
 					{
 						va_end(check_list);
 					}
-				break;
+					break;
 				default:
 					va_end(check_list);
 					return (-1);
