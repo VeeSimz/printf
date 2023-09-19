@@ -42,12 +42,15 @@ int _printf(const char *format, ...)
 						va_end(check_list);
 					}
 					break;
-<<<<<<< HEAD
+				case 'd':
+					/*digit = va_arg(check_list, int *);*/
+					result += check_digit(check_list);
+					break;
+
 				default:
 					va_end(check_list);
 					return (-1);
-=======
->>>>>>> 54fe754 (Refactored code for Betty)
+
 				}
 			}
 		}
