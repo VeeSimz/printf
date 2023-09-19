@@ -40,3 +40,21 @@ int check_string(va_list args)
 	}
 	return (count);
 }
+
+/**
+ * check_digit - checks if number is a digit
+ *@args: list
+ *
+ * Return: length
+ */
+
+int check_digit(va_list args)
+{
+	int count = 0;
+	int digit = va_arg(args, int);
+
+	count += count_nums(digit);
+	_putchar(digit);
+
+	return (count);
+}
