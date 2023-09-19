@@ -58,3 +58,29 @@ int check_digit(va_list args)
 
 	return (count);
 }
+
+/**
+ * count_nums - counts input numbers
+ * @x: number
+ *
+ * Return: 0
+ */
+int count_nums(int x)
+{
+	int i, j = 0;
+	
+	if (x < 0)
+	{
+		i = x * -1;
+	}
+	else
+	{
+		i = x;
+	}
+	while (i != 0)
+	{
+		i = i / 10;
+		j++;
+	}
+	return (j);
+}
