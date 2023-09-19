@@ -11,5 +11,7 @@ int _printf(const char *format, ...);
 int _putchar(char c);
 int print_char(va_list args);
 int check_string(va_list args);
+int print_num(int number);
+int check_digit(va_list args);
 
 #endif
