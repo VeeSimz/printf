@@ -53,34 +53,43 @@ int check_digit(va_list args)
 	int count = 0;
 	int digit = va_arg(args, int);
 
-	count += count_nums(digit);
-	_putchar(digit);
+	count += print_num(digit);
 
 	return (count);
 }
 
 /**
  * count_nums - counts input numbers
- * @x: number
+ * @number: input number
  *
  * Return: 0
  */
-int count_nums(int x)
+int print_num(int number)
 {
-	int i, j = 0;
-	
-	if (x < 0)
+	int counter = 0;
+	char buffer[12];
+	int i, index = 0;
+
+	if (number < 0)
 	{
-		i = x * -1;
+		_putchar('-');
+		counter++;
+		number = -number;
 	}
-	else
+	if (number == 0)
 	{
-		i = x;
+		_putchar('0');
+		return (1);
 	}
-	while (i != 0)
+	while (number != 0)
 	{
-		i = i / 10;
-		j++;
+		buffer[index++] = (number % 10) + '0';
+		number = number / 10;
+		counter++;
 	}
-	return (j);
+	for (i = index - 1; i >= 0; i--)
+	{
+		_putchar(buffer[i]);
+	}
+	return (counter);
 }
