@@ -62,7 +62,7 @@ int check_digit(va_list args)
 }
 
 /**
- * count_nums - counts input numbers
+ * print_num - counts input numbers
  * @number: input number
  *
  * Return: 0
