@@ -52,8 +52,8 @@ int _printf(const char *format, ...)
 					break;
 
 				default:
-					va_end(check_list);
-					return (-1);
+					_putchar('%');
+					_putchar(format[i]);
 
 				}
 			}
