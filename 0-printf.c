@@ -9,7 +9,7 @@
 int _printf(const char *format, ...)
 {
 	va_list check_list;
-	int i, result = 0;
+	int i, number, result = 0;
 	/*int digit;*/
 
 
@@ -43,8 +43,8 @@ int _printf(const char *format, ...)
 					}
 					break;
 				case 'd':
-					/*digit = va_arg(check_list, int *);*/
-					result += check_digit(check_list);
+					number = va_arg(check_list, int);
+					result += print_num(number);
 					break;
 
 				default:
